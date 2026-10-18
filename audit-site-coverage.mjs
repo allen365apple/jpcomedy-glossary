@@ -8,7 +8,7 @@ function normalize(name) {
 
 /** Find website artists and members missing from a glossary; report translation differences separately. */
 export function auditCoverage(groups, glossary) {
-  const active = glossary.talents.filter(t => !t.disabled);
+  const active = glossary.talents.filter(t => !t.disabled && !t.group?.disabled);
   const missingArtists = [], missingMembers = [], translationDifferences = [], memberTranslationDifferences = [];
   for (const group of groups) {
     const names = new Set([group.jp, ...(group.glossaryAliases || [])].map(normalize));

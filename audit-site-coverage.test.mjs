@@ -22,5 +22,6 @@ test('canonical aliases resolve members without replacing manual translations', 
 });
 test('disabled and ambiguous identities are not reported as covered', () => {
   assert.equal(auditCoverage([group], { talents: [{ ...unit, disabled: true }] }).missingArtists.length, 1);
+  assert.equal(auditCoverage([group], { talents: [{ ...unit, group: { ...unit.group, disabled: true } }] }).missingArtists.length, 1);
   assert.equal(auditCoverage([group], { talents: [unit, unit] }).missingArtists.length, 1);
 });
